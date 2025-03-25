@@ -8,3 +8,7 @@ Les données ne sont pas stockées sur le git mais sont copiés sur le cluster a
 
 ``scp -r data tmahandry-23@gpu-gw:/home/ids/tmahandry-23/data``
 ``rsync -avz data tmahandry-23@gpu-gw:/home/ids/tmahandry-23/data`` (à faire  à chaque update)
+
+
+conda env export > enironment.yml
+conda env update --file environment.yml  --prune

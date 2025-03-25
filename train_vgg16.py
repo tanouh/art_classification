@@ -9,6 +9,7 @@ from torch.utils.tensorboard import SummaryWriter
 import argparse
 import os
 from datetime import datetime
+from utils import *
 
 # -------------------------------
 # ARGUMENTS PAR LIGNE DE COMMANDE
@@ -25,16 +26,13 @@ args = parser.parse_args()
 # TENSORBOARD WRITER
 # ---------------------
 run_name = datetime.now().strftime("%Y%m%d-%H%M%S")
-log_dir = os.path.join(args.output_dir, "logs", run_name)
+log_dir = os.path.join(args.output_dir, "train_logs", run_name)
 log_path = f"{log_dir}/{run_name}.log"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 writer = SummaryWriter(log_dir=log_dir)
 
-def log_message(message):
-    timestamp = datetime.now.strftime("%d:%m:%y, %H:%M%S")
-    with open(log_path, "a") as f:
-        f.write(f"{timestamp} : {message} \n")
+
 # -----------------
 # CONFIGURATION GPU
 # -----------------
