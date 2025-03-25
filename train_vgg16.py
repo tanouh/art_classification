@@ -9,7 +9,7 @@ from torch.utils.tensorboard import SummaryWriter
 import argparse
 import os
 from datetime import datetime
-from art_classification.log_utils import *
+from log_utils import *
 
 # -------------------------------
 # ARGUMENTS PAR LIGNE DE COMMANDE

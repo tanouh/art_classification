@@ -6,7 +6,7 @@ import torchvision.datasets as datasets
 from torch.utils.data import DataLoader
 import argparse
 import os
-from art_classification.log_utils import *
+from log_utils import *
 
 
 
