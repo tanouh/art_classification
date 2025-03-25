@@ -12,3 +12,6 @@ Les données ne sont pas stockées sur le git mais sont copiés sur le cluster a
 
 conda env export > enironment.yml
 conda env update --file environment.yml  --prune
+
+conda create -n myenv python=3.9
+

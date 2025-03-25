@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vgg16_finetune      # Nom du job
-#SBATCH --output=vgg16_%j.out          # Fichier de sortie (%j = ID du job)
-#SBATCH --error=vgg16_%j.err           # Fichier d'erreur
+#SBATCH --output=out/vgg16_%j.out          # Fichier de sortie (%j = ID du job)
+#SBATCH --error=out/vgg16_%j.err           # Fichier d'erreur
 #SBATCH --partition=P100               # Partition GPU (à adapter selon le cluster)
 #SBATCH --gres=gpu:1                   # Demander 1 GPU
 #SBATCH --cpus-per-task=8              # 8 CPU par tâche
@@ -13,12 +13,12 @@ echo "Starting job on node: $(hostname)"
 echo "Job started at: $(date)"
 
 # Définition des variables
-DATA_DIR="~/data/data/"
+DATA_DIR="~/data/art/"
 OUTPUT_DIR="~/projet/output/"
 EPOCHS=20
 BATCH_SIZE=32
 LR=0.0005
-MODEL_PATH="$OUTPUT_DIR/vgg16/best_vgg16.pth"
+MODEL_PATH="$OUTPUT_DIR/vgg16/best_vgg16.h5"
 
 # Activer l'environnement Conda
 source ~/.bashrc
