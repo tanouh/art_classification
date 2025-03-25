@@ -13,15 +13,16 @@ echo "Starting job on node: $(hostname)"
 echo "Job started at: $(date)"
 
 # Définition des variables
-DATA_DIR="~/data/art/"
-OUTPUT_DIR="~/projet/output/"
+DATA_DIR="$HOME/data/art/"
+OUTPUT_DIR="$HOME/projet/output/"
 EPOCHS=20
 BATCH_SIZE=32
 LR=0.0005
 MODEL_PATH="$OUTPUT_DIR/vgg16/best_vgg16.h5"
 
 # Activer l'environnement Conda
-source ~/.bashrc
+source $HOME/.bashrc
+conda init
 conda activate pyenv11
 
 # Étape 1 : Entraîner le modèle

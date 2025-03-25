@@ -6,6 +6,7 @@ from tensorflow.keras.callbacks import TensorBoard
 import os
 from datetime import datetime
 import argparse
+from log_utils import *
 
 # -------------------------------
 # ARGUMENTS PAR LIGNE DE COMMANDE
@@ -15,8 +16,9 @@ parser.add_argument("--data", type=str, required=True, help="Path to dataset dir
 parser.add_argument("--epochs", type=int, default=10, help="Number of epochs")
 parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
 parser.add_argument("--lr", type=float, default=0.001, help="Learning rate")
-parser.add_argument("--output-dir", type=str, default="./models", help="Directory to save the trained model")
+parser.add_argument("--output-dir", type=str, default="./output", help="Directory to save the trained model")
 args = parser.parse_args()
+
 
 # -----------------
 # TENSORBOARD CALLBACK
@@ -24,12 +26,14 @@ args = parser.parse_args()
 run_name = datetime.now().strftime("%Y%m%d-%H%M%S")
 log_dir = os.path.join(args.output_dir, "train_logs", run_name)
 log_path = os.path.join(log_dir, f"{run_name}.log")
+model_path = os.path.join(args.output_dir,f"model/{run_name}" ,"vgg16.h5")
 
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
 tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
 
+log_message("Starting training process...", log_path)
 # -------------------------
 # PRÉTRAITEMENT DES DONNÉES
 # -------------------------
@@ -55,6 +59,7 @@ val_generator = test_datagen.flow_from_directory(
     batch_size=args.batch_size,
     class_mode='categorical'
 )
+log_message(f"Dataset loaded. Training samples: {train_generator.samples}, Validation samples: {val_generator.samples}", log_path)
 
 # ------------------------
 # CHARGEMENT DU MODÈLE
@@ -80,6 +85,8 @@ model.compile(optimizer=optimizers.Adam(learning_rate=args.lr),
               loss='categorical_crossentropy', 
               metrics=['accuracy'])
 
+log_message("Model compiled successfully.", log_path)
+
 # ----------------------
 # BOUCLE D'ENTRAÎNEMENT
 # ----------------------
@@ -91,4 +98,5 @@ model.fit(
 )
 
 # Sauvegarder le meilleur modèle
-model.save(os.path.join(log_dir, 'vgg16/best_vgg16.h5'))
+model.save(os.path.join(model_path))
+log_message(f"Model saved at {model_path}", log_path)

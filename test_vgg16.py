@@ -13,7 +13,9 @@ parser = argparse.ArgumentParser(description="Test a fine-tuned VGG-16 model.")
 parser.add_argument("--data", type=str, required=True, help="Path to dataset directory")
 parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
 parser.add_argument("--model-path", type=str, required=True, help="Path to the trained model file")
+parser.add_argument("--output-dir", type=str, default="./output", help="Directory to save logs")
 args = parser.parse_args()
+
 
 # ---------------------
 # LOGGING
@@ -23,6 +25,9 @@ log_dir = os.path.join(args.output_dir, "test_logs", run_name)
 log_path = f"{log_dir}/{run_name}.log"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
+
+
+
 
 # -------------------
 # PRÉTRAITEMENT DES DONNÉES
@@ -36,6 +41,8 @@ test_generator = test_datagen.flow_from_directory(
     class_mode='categorical',
     shuffle=False
 )
+
+
 
 # -------------------
 # CHARGEMENT DU MODÈLE
