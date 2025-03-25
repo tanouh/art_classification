@@ -2,7 +2,7 @@
 #SBATCH --job-name=vgg16_finetune      # Nom du job
 #SBATCH --output=out/vgg16_%j.out          # Fichier de sortie (%j = ID du job)
 #SBATCH --error=out/vgg16_%j.err           # Fichier d'erreur
-#SBATCH --partition=P100               # Partition GPU (à adapter selon le cluster)
+#SBATCH --partition=3090               # Partition GPU (à adapter selon le cluster)
 #SBATCH --gres=gpu:1                   # Demander 1 GPU
 #SBATCH --cpus-per-task=8              # 8 CPU par tâche
 #SBATCH --mem=32G                      # 32 Go de RAM
