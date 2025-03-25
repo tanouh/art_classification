@@ -9,7 +9,7 @@ from torch.utils.tensorboard import SummaryWriter
 import argparse
 import os
 from datetime import datetime
-from utils import *
+from art_classification.log_utils import *
 
 # -------------------------------
 # ARGUMENTS PAR LIGNE DE COMMANDE
@@ -37,7 +37,7 @@ writer = SummaryWriter(log_dir=log_dir)
 # CONFIGURATION GPU
 # -----------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-log_message(f"Using device %s", device)
+log_message(f"Using device {device}", log_path)
 
 # ----------------------
 # PRÉTRAITEMENT IMAGES
@@ -82,7 +82,7 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
 # --------------------
 # BOUCLE D'ENTRAÎNEMENT
 # --------------------
-log_message("Training started.")
+log_message("Training started.", log_path)
 
 best_val_acc = 0.0  # Pour suivre la meilleure précision sur validation
 best_model_path = os.path.join(log_dir, "best_vgg16.pth")
@@ -119,7 +119,7 @@ for epoch in range(args.epochs):
             correct += (predicted == labels).sum().item()
 
     val_acc = 100 * correct / total
-    log_message(f"Epoch {epoch+1}/{args.epochs} - Train Loss: {avg_train_loss:.4f} - Val Accuracy: {val_acc:.2f}%")
+    log_message(f"Epoch {epoch+1}/{args.epochs} - Train Loss: {avg_train_loss:.4f} - Val Accuracy: {val_acc:.2f}%", log_path)
 
     # -----------------
     # TENSORBOARD LOGGING
@@ -132,9 +132,10 @@ for epoch in range(args.epochs):
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         torch.save(model.state_dict(), best_model_path)
-        log_message(f"New best model saved at {best_model_path}")
+        log_message(f"New best model saved at {best_model_path}", log_path)
 
     scheduler.step()
 
-log_message(f"Best validation accuracy: {best_val_acc:.2f}%")
+log_message(f"Best validation accuracy: {best_val_acc:.2f}%", log_path)
+writer.flush()
 writer.close()

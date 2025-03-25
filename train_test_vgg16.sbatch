@@ -21,8 +21,8 @@ LR=0.0005
 MODEL_PATH="$OUTPUT_DIR/vgg16/best_vgg16.pth"
 
 # Activer l'environnement Conda
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate my_env
+source ~/.bashrc
+conda activate pyenv11
 
 # Étape 1 : Entraîner le modèle
 srun python train_vgg16.py --data $DATA_DIR --epochs $EPOCHS --batch-size $BATCH_SIZE --lr $LR --output-dir $OUTPUT_DIR
