@@ -13,5 +13,9 @@ Les données ne sont pas stockées sur le git mais sont copiés sur le cluster a
 conda env export > enironment.yml
 conda env update --file environment.yml  --prune
 
-conda create -n myenv python=3.9
+conda create -n projenv python=3.10 -y
+conda install pytorch torchvision torchaudio -c pytorch -c nvidia
+conda install -c conda-forge tensorboard
+conda install matplotlib scikit-learn
+
 

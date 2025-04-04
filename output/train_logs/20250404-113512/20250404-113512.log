@@ -1,0 +1,13 @@
+04/04/25, 11:35:12 : Using device: cuda 
+04/04/25, 11:35:12 : Starting training process...
+n_epoch : 20, batch size : 32, learning rate : 0.0005 
+04/04/25, 11:35:12 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+04/04/25, 11:44:09 : Epoch 1/20 - Train Loss: 0.2279 - Val Accuracy: 91.49% 
+04/04/25, 11:44:10 : New best model saved at /home/ids/tmahandry-23/projet/output/model/best_vgg16.pth 
+04/04/25, 11:52:43 : Epoch 2/20 - Train Loss: 0.1855 - Val Accuracy: 91.75% 
+04/04/25, 11:52:49 : New best model saved at /home/ids/tmahandry-23/projet/output/model/best_vgg16.pth 
+04/04/25, 12:01:22 : Epoch 3/20 - Train Loss: 0.1749 - Val Accuracy: 92.15% 
+04/04/25, 12:01:29 : New best model saved at /home/ids/tmahandry-23/projet/output/model/best_vgg16.pth 
+04/04/25, 12:10:01 : Epoch 4/20 - Train Loss: 0.1639 - Val Accuracy: 93.32% 
+04/04/25, 12:10:03 : New best model saved at /home/ids/tmahandry-23/projet/output/model/best_vgg16.pth 
+04/04/25, 12:18:34 : Epoch 5/20 - Train Loss: 0.1641 - Val Accuracy: 91.62% 
