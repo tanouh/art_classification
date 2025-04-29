@@ -47,7 +47,7 @@ transform = transforms.Compose([
 # LOAD DATASET (ONLY ABSTRACT PAINTINGS)
 # --------------------------
 # Assumes the 'abstrait' folder contains the abstract images
-dataset = datasets.ImageFolder(root=os.path.join(args.data, "abstrait"), transform=transform)
+dataset = datasets.ImageFolder(root=os.path.join(args.data, "abstract_only"), transform=transform)
 loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False)
 
 log_message(f"Dataset loaded. Found {len(dataset)} abstract images.", log_path)

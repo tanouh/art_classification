@@ -19,3 +19,7 @@ conda install -c conda-forge tensorboard
 conda install matplotlib scikit-learn
 
 
+Etapes : 
+1. Classification abstrait/figuratif
+2. Extraction des principales charactériques des images abstraites
+3. Clustering non supervisé des images abs pour faire apparaître les groupes naturels

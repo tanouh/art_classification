@@ -3,7 +3,7 @@ echo "Starting job on node: $(hostname)"
 echo "Job started at: $(date)"
 
 # Define variables (adjust paths)
-DATA_DIR="$HOME/data/art/train/"
+DATA_DIR="$HOME/data/art/"
 OUTPUT_DIR="$HOME/projet/art_classification/output/"
 BATCH_SIZE=32
 
