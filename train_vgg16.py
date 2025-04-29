@@ -74,7 +74,8 @@ model.to(device)
 # ENTRAÎNEMENT
 # --------------------
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.classifier[6].parameters(), lr=args.lr)
+# optimizer = optim.Adam(model.classifier[6].parameters(), lr=args.lr)
+optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0.9)
 scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
 
 best_val_acc = 0.0

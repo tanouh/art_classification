@@ -15,10 +15,10 @@ echo "Job started at: $(date)"
 # Définition des variables
 DATA_DIR="${HOME}/data/art"
 OUTPUT_DIR="${HOME}/projet/art_classification/output"
-EPOCHS=10
+EPOCHS=5
 BATCH_SIZE=32
-LR=0.0005
-MODEL_PATH="${OUTPUT_DIR}/model/best_vgg16_sgd.pth"
+LR=0.001
+MODEL_PATH="${OUTPUT_DIR}/model/best_vgg16_.pth"
 
 
 # Activer l'environnement Conda
@@ -27,6 +27,9 @@ conda activate projenv
 
 # Étape 1 : Entraîner le modèle
 srun python train_vgg16.py --data $DATA_DIR --epochs $EPOCHS --batch-size $BATCH_SIZE --lr $LR --output-dir $OUTPUT_DIR
+
+# Étape 2 : Tester le meilleur modèle entraîné
+srun python test_vgg16.py --data $DATA_DIR --batch-size $BATCH_SIZE --model-path $MODEL_PATH --output-dir $OUTPUT_DIR
 
 # Afficher l'heure de fin
 echo "Job finished at: $(date)"
