@@ -16,8 +16,8 @@ echo "Job started at: $(date)"
 OUTPUT_DIR="${HOME}/projet/art_classification/output"
 N_CLUSTERS=10
 PLOT_DIR="${OUTPUT_DIR}/plots"
-FEATURES_PATH="${OUTPUT_DIR}/features/abstract_features.pt"
-LABEL_PATH="${OUTPUT_DIR}/labels/abstract_labels.pt"
+FEATURES_PATH="${OUTPUT_DIR}/abstract_features.pt"
+LABEL_PATH="${OUTPUT_DIR}/abstract_labels.pt"
 
 
 # Activer l'environnement Conda
