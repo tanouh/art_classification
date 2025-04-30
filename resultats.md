@@ -12,7 +12,13 @@
 On a plutôt intérêt à choisir le modèle fine-tuner avec SGD, epoch=10, lr=0.0005
 
 # Embeddings 
-
+## Extraction task
 326017 : Extracting embeddings from abstract images with vgg16_optiSGD
+- 4096 features extracted from 1241 images 
+## Visualisation 
+1. Try to explicit the clusters 
+- Test on several parameters 
+
+
 
 
