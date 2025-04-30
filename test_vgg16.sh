@@ -19,7 +19,7 @@ EPOCHS=10
 BATCH_SIZE=32
 LR=0.0005
 LR_CLEAN=${LR//./}
-MODEL_NAME="vgg16_e${EPOCHS}_lr${LR_CLEAN}_OptiSGD.pth"
+MODEL_NAME="vgg16_e${EPOCHS}_lr${LR_CLEAN}_OptiAdam.pth"
 MODEL_PATH="${OUTPUT_DIR}/model/${MODEL_NAME}"
 
 
@@ -27,9 +27,7 @@ MODEL_PATH="${OUTPUT_DIR}/model/${MODEL_NAME}"
 source ${HOME}/.bashrc
 conda activate projenv
 
-# Étape 1 : Entraîner le modèle
-srun python train_vgg16.py --data $DATA_DIR --epochs $EPOCHS --batch-size $BATCH_SIZE --lr $LR --output-dir $OUTPUT_DIR --model-name $MODEL_NAME
-# Étape 2 : Tester le meilleur modèle entraîné
+# Tester le meilleur modèle entraîné
 srun python test_vgg16.py --data $DATA_DIR --batch-size $BATCH_SIZE --model-path $MODEL_PATH --output-dir $OUTPUT_DIR
 
 # Afficher l'heure de fin

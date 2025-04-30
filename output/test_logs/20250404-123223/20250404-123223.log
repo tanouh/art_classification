@@ -1,0 +1,5 @@
+04/04/25, 12:32:23 : Using device: cuda 
+04/04/25, 12:32:23 : Test dataset loaded. Total samples: 765 
+04/04/25, 12:32:28 : Evaluating model on test set... 
+04/04/25, 12:33:28 : Test Accuracy: 93.20% 
+04/04/25, 12:33:28 : Test Loss: 0.1522 

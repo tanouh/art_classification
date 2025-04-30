@@ -1,0 +1,6 @@
+04/04/25, 14:43:44 : Using device: cuda 
+04/04/25, 14:43:44 : Dataset loaded. Found 1241 abstract images. 
+04/04/25, 14:43:46 : VGG16 model truncated and ready for feature extraction. 
+04/04/25, 14:45:31 : Features saved to /home/ids/tmahandry-23/projet/art_classification/output/abstract_features.pt 
+04/04/25, 14:45:31 : Labels saved to /home/ids/tmahandry-23/projet/art_classification/output/abstract_labels.pt 
+04/04/25, 14:45:31 : Feature extraction completed successfully! 

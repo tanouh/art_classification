@@ -1,0 +1,6 @@
+04/04/25, 13:20:54 : Using device: cuda 
+04/04/25, 13:20:54 : Dataset loaded. Found 6112 images. 
+04/04/25, 13:20:57 : VGG16 model truncated and ready for feature extraction. 
+04/04/25, 13:28:31 : Features saved to /home/ids/tmahandry-23/projet/output/abstract_features.pt 
+04/04/25, 13:28:31 : Labels saved to /home/ids/tmahandry-23/projet/output/abstract_labels.pt 
+04/04/25, 13:28:31 : Feature extraction completed successfully! 

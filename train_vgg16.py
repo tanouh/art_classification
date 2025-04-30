@@ -1,11 +1,13 @@
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.applications import VGG16
-from tensorflow.keras import layers, models, optimizers
-from tensorflow.keras.callbacks import TensorBoard
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.models as models
+import torchvision.transforms as transforms
+import torchvision.datasets as datasets
+from torch.utils.data import DataLoader
+import argparse
 import os
 from datetime import datetime
-import argparse
 from log_utils import *
 
 # -------------------------------
@@ -16,87 +18,113 @@ parser.add_argument("--data", type=str, required=True, help="Path to dataset dir
 parser.add_argument("--epochs", type=int, default=10, help="Number of epochs")
 parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
 parser.add_argument("--lr", type=float, default=0.001, help="Learning rate")
-parser.add_argument("--output-dir", type=str, default="./output", help="Directory to save the trained model")
+parser.add_argument("--output-dir", type=str, required=True, help="Directory to save the trained model")
+parser.add_argument("--model-name", type=str, required=True, help="Model name")
 args = parser.parse_args()
 
-
-# -----------------
-# TENSORBOARD CALLBACK
-# -----------------
+# ---------------------
+# CONFIGURATION & LOGGING
+# ---------------------
 run_name = datetime.now().strftime("%Y%m%d-%H%M%S")
 log_dir = os.path.join(args.output_dir, "train_logs", run_name)
 log_path = os.path.join(log_dir, f"{run_name}.log")
-model_path = os.path.join(args.output_dir,f"model/{run_name}" ,"vgg16.h5")
+os.makedirs(log_dir, exist_ok=True)
 
-if not os.path.exists(log_dir):
-    os.makedirs(log_dir)
+model_dir = os.path.join(args.output_dir, "model")
+best_model_path = os.path.join(model_dir, args.model_name)
+os.makedirs(model_dir, exist_ok=True)
 
-tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-log_message("Starting training process...", log_path)
-# -------------------------
-# PRÉTRAITEMENT DES DONNÉES
-# -------------------------
-train_datagen = ImageDataGenerator(
-    rescale=1./255,
-    shear_range=0.2,
-    zoom_range=0.2,
-    horizontal_flip=True
-)
 
-test_datagen = ImageDataGenerator(rescale=1./255)
-
-train_generator = train_datagen.flow_from_directory(
-    os.path.join(args.data, 'train'),
-    target_size=(224, 224),
-    batch_size=args.batch_size,
-    class_mode='categorical'
-)
-
-val_generator = test_datagen.flow_from_directory(
-    os.path.join(args.data, 'val'),
-    target_size=(224, 224),
-    batch_size=args.batch_size,
-    class_mode='categorical'
-)
-log_message(f"Dataset loaded. Training samples: {train_generator.samples}, Validation samples: {val_generator.samples}", log_path)
-
-# ------------------------
-# CHARGEMENT DU MODÈLE
-# ------------------------
-base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
-
-# Geler les couches du modèle préentraîné
-for layer in base_model.layers:
-    layer.trainable = False
-
-# Ajouter des couches personnalisées
-x = layers.Flatten()(base_model.output)
-x = layers.Dense(256, activation='relu')(x)
-x = layers.Dropout(0.5)(x)
-x = layers.Dense(2, activation='softmax')(x)  # Supposons 2 classes
-
-model = models.Model(inputs=base_model.input, outputs=x)
-
-# ------------------------
-# COMPILATION DU MODÈLE
-# ------------------------
-model.compile(optimizer=optimizers.Adam(learning_rate=args.lr), 
-              loss='categorical_crossentropy', 
-              metrics=['accuracy'])
-
-log_message("Model compiled successfully.", log_path)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+log_message(f"Using device: {device}", log_path)
+log_message("Starting training process...\n"
+            f"n_epoch : {args.epochs}, batch size : {args.batch_size}, learning rate : {args.lr}", log_path)
 
 # ----------------------
-# BOUCLE D'ENTRAÎNEMENT
+# TRANSFORMATIONS & DATA
 # ----------------------
-model.fit(
-    train_generator,
-    epochs=args.epochs,
-    validation_data=val_generator,
-    callbacks=[tensorboard_callback]
-)
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225])
+])
 
-# Sauvegarder le meilleur modèle
-model.save(os.path.join(model_path))
-log_message(f"Model saved at {model_path}", log_path)
+train_dataset = datasets.ImageFolder(os.path.join(args.data, "train"), transform=transform)
+val_dataset = datasets.ImageFolder(os.path.join(args.data, "val"), transform=transform)
+
+train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
+val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
+
+log_message(f"Dataset loaded. Training samples: {len(train_dataset)}, Validation samples: {len(val_dataset)}", log_path)
+
+# -------------------
+# MODÈLE VGG-16
+# -------------------
+model = models.vgg16(pretrained=True)
+for param in model.features.parameters():
+    param.requires_grad = False
+
+# Modification du classifieur pour 2 classes
+num_features = model.classifier[6].in_features
+model.classifier[6] = nn.Linear(num_features, 2)
+model.to(device)
+
+# --------------------
+# ENTRAÎNEMENT
+# --------------------
+criterion = nn.CrossEntropyLoss()
+# optimizer = optim.Adam(model.classifier[6].parameters(), lr=args.lr)
+optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0.9)
+log_message(f"Optimizer: SGD", log_path)
+scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
+
+best_val_acc = 0.0
+
+for epoch in range(args.epochs):
+    model.train()
+    train_loss = 0.0
+
+    for inputs, labels in train_loader:
+        inputs, labels = inputs.to(device), labels.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        train_loss += loss.item()
+
+    avg_train_loss = train_loss / len(train_loader)
+
+    # -----------------
+    # VALIDATION
+    # -----------------
+    model.eval()
+    correct = 0
+    total = 0
+
+    with torch.no_grad():
+        for inputs, labels in val_loader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            outputs = model(inputs)
+            _, preds = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (preds == labels).sum().item()
+
+    val_acc = 100.0 * correct / total
+
+    log_message(f"Epoch {epoch+1}/{args.epochs} - Train Loss: {avg_train_loss:.4f} - Val Accuracy: {val_acc:.2f}%", log_path)
+
+
+    # Sauvegarde du meilleur modèle
+    if val_acc > best_val_acc:
+        best_val_acc = val_acc
+        torch.save(model.state_dict(), best_model_path)
+        log_message(f"New best model saved at {best_model_path}", log_path)
+
+    scheduler.step()
+
+log_message(f"Training complete. Best validation accuracy: {best_val_acc:.2f}%", log_path)
+
