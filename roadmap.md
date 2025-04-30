@@ -21,6 +21,11 @@ _Actions :_
 
 Phase d'entrainement suivi d'une phase de validation et sauvegarde du meilleur modèle suivant la meilleure précision à chaque epoch. 
 
+Choix des paramètres : 
+- epoch 
+- starting learning rate
+- optimizer 
+
 ### Test
 Phase de test sur les données non rencontrées en entrainement. 
 

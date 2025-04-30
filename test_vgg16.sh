@@ -18,7 +18,9 @@ OUTPUT_DIR="${HOME}/projet/art_classification/output"
 EPOCHS=10
 BATCH_SIZE=32
 LR=0.0005
-MODEL_PATH="${OUTPUT_DIR}/model/best_vgg16.pth"
+LR_CLEAN=${LR//./}
+MODEL_NAME="vgg16_e${EPOCHS}_lr${LR_CLEAN}_OptiAdam.pth"
+MODEL_PATH="${OUTPUT_DIR}/model/${MODEL_NAME}"
 
 
 # Activer l'environnement Conda

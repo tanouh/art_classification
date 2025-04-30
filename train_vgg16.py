@@ -19,6 +19,7 @@ parser.add_argument("--epochs", type=int, default=10, help="Number of epochs")
 parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
 parser.add_argument("--lr", type=float, default=0.001, help="Learning rate")
 parser.add_argument("--output-dir", type=str, required=True, help="Directory to save the trained model")
+parser.add_argument("--model-name", type=str, required=True, help="Model name")
 args = parser.parse_args()
 
 # ---------------------
@@ -30,7 +31,7 @@ log_path = os.path.join(log_dir, f"{run_name}.log")
 os.makedirs(log_dir, exist_ok=True)
 
 model_dir = os.path.join(args.output_dir, "model")
-best_model_path = os.path.join(model_dir, "best_vgg16.pth")
+best_model_path = os.path.join(model_dir, args.model_name)
 os.makedirs(model_dir, exist_ok=True)
 
 
@@ -76,6 +77,7 @@ model.to(device)
 criterion = nn.CrossEntropyLoss()
 # optimizer = optim.Adam(model.classifier[6].parameters(), lr=args.lr)
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0.9)
+log_message(f"Optimizer: SGD", log_path)
 scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
 
 best_val_acc = 0.0

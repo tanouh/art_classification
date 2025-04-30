@@ -18,7 +18,7 @@ OUTPUT_DIR="${HOME}/projet/art_classification/output"
 EPOCHS=10
 BATCH_SIZE=32
 LR=0.0005
-MODEL_PATH="${OUTPUT_DIR}/model/best_vgg16_sgd.pth"
+MODEL_PATH="${OUTPUT_DIR}/model/best_vgg16.pth"
 
 
 # Activer l'environnement Conda

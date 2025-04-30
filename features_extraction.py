@@ -9,7 +9,7 @@ import os
 import argparse
 from datetime import datetime
 from tqdm import tqdm
-from log_utils import *  # Assurez-vous que ce fichier existe pour la gestion des logs.
+from log_utils import *  
 
 # --------------------------
 # ARGUMENT PARSING
@@ -18,6 +18,7 @@ parser = argparse.ArgumentParser(description="Extract features from truncated VG
 parser.add_argument("--data", type=str, required=True, help="Path to dataset directory containing 'abstrait' images")
 parser.add_argument("--batch-size", type=int, default=32, help="Batch size for DataLoader")
 parser.add_argument("--output-dir", type=str, required=True, help="Directory to save extracted features and logs")
+parser.add_argument("--model-path", type=str, required=True, help="Path to the pre-trained VGG16 model")
 args = parser.parse_args()
 
 # --------------------------
@@ -55,17 +56,23 @@ log_message(f"Dataset loaded. Found {len(dataset)} abstract images.", log_path)
 # --------------------------
 # TRUNCATE VGG16
 # --------------------------
-vgg16 = models.vgg16(pretrained=True).to(device)
-vgg16.eval()
+model = models.vgg16(pretrained=False)  # Load VGG16 model
+model.classifier[6] = nn.Linear(in_features=4096, out_features=2)  # Modify the last layer to have 2 outputs (for binary classification)
+
+weights = torch.load(args.model_path, weights_only=True)  # Load the pre-trained weights
+model.load_state_dict(weights)  # Load the pre-trained weights
+model = model.to(device)
+model.eval()
 
 # Truncate the classifier: keep everything except the last fully connected layer
 # Classifier layers: [fc1, ReLU, Dropout, fc2, ReLU, Dropout, fc3]
 # We keep up to index -1 to remove fc3 (final layer)
-truncated = nn.Sequential(*list(vgg16.classifier.children())[:-1])
-model = nn.Sequential(vgg16.features, nn.Flatten(), truncated).to(device)
-
-log_message("VGG16 model truncated and ready for feature extraction.", log_path)
-
+truncated = nn.Sequential(
+    model.features,
+    nn.AdaptiveAvgPool2d(output_size=(7, 7)),  # Ensure the output size is consistent
+    nn.Flatten(),
+    nn.Sequential(*list(model.classifier.children())[:-1])  # Keep all but the last layer
+).to(device)
 # --------------------------
 # FEATURE EXTRACTION
 # --------------------------
@@ -75,7 +82,7 @@ all_labels = []
 with torch.no_grad():
     for inputs, labels in tqdm(loader, desc="Extracting features"):
         inputs = inputs.to(device)
-        features = model(inputs)
+        features = truncated(inputs)
         all_features.append(features.cpu())  # Collect all features in CPU memory
         all_labels.append(labels)  # Collect corresponding labels
 

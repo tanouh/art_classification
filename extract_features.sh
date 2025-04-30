@@ -13,9 +13,15 @@ echo "Starting job on node: $(hostname)"
 echo "Job started at: $(date)"
 
 # Define variables (adjust paths)
-DATA_DIR="$HOME/data/art/"
-OUTPUT_DIR="$HOME/projet/art_classification/output/"
+
+DATA_DIR="${HOME}/data/art"
+OUTPUT_DIR="${HOME}/projet/art_classification/output"
+EPOCHS=10
 BATCH_SIZE=32
+LR=0.0005
+LR_CLEAN=${LR//./}
+MODEL_NAME="vgg16_e${EPOCHS}_lr${LR_CLEAN}_OptiSGD.pth"
+MODEL_PATH="${OUTPUT_DIR}/model/${MODEL_NAME}"
 
 # Activate conda environment
 source $HOME/.bashrc
@@ -25,7 +31,8 @@ conda activate projenv
 srun python features_extraction.py \
   --data "$DATA_DIR" \
   --batch-size $BATCH_SIZE \
-  --output-dir "$OUTPUT_DIR"
+  --output-dir "$OUTPUT_DIR" \
+  --model-path "$MODEL_PATH" \
 
 # Show job end time
 echo "Job finished at: $(date)"
