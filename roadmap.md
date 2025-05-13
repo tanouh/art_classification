@@ -34,6 +34,7 @@ Phase de test sur les données non rencontrées en entrainement.
 
 _Actions :_
 - Extraction des embeddings du modèle (utilisation des activations avant la dernière couche de classification)
+  - Utilisation de réseau de neurones 
 - Visualisation des embeddings (avec UMAP et t-SNE)
   - Constat sur la formation naturelle de regroupements 
 
