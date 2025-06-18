@@ -24,4 +24,17 @@ Etapes :
 2. Extraction des principales caractéristiques des images abstraites
 3. Clustering non supervisé des images abs pour faire apparaître les groupes naturels
 
+Traitement des données: 
+- Transformation :
+- - Letterboxing ie ajout de padding pour avoir une dimension proportionnelle à 224*224 : miroir , puis redimensionnement à 224\*224
+  - Data augmentation :
+  -   - Rotation verticale/horizontale aléatoire de 90° (p=0.5)
+  - Normalisation selon les données de ImageNet
+ 
+Architecture : 
+VGG16 - classifier = Sequential()
+
+
+
+
 
