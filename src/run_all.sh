@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vgg16_finetune      # Nom du job
-#SBATCH --output=out/run/vgg16_%j.out          # Fichier de sortie (%j = ID du job)
-#SBATCH --error=out/run/vgg16_%j.err           # Fichier d'erreur
+#SBATCH --output=../out/run/vgg16_%j.out          # Fichier de sortie (%j = ID du job)
+#SBATCH --error=../out/run/vgg16_%j.err           # Fichier d'erreur
 #SBATCH --partition=P100               # Partition GPU (à adapter selon le cluster)
 #SBATCH --gres=gpu:1                   # Demander 1 GPU
 #SBATCH --cpus-per-task=8              # 8 CPU par tâche
@@ -27,7 +27,7 @@ FEATURES_PATH="${OUTPUT_DIR}/features_logs/${RUN_NAME}/abstract_features.pt"
 LABEL_PATH="${OUTPUT_DIR}/features_logs/${RUN_NAME}/abstract_labels.pt"
 
 PLOT_DIR="${OUTPUT_DIR}/features_logs/${RUN_NAME}"
-N_CLUSTERS=10
+N_CLUSTERS=1
 
 # Activer l'environnement Conda
 source ${HOME}/.bashrc

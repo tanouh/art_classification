@@ -1,13 +1,8 @@
 import torch
 import torch.nn as nn
 from datetime import datetime
-import numpy as np
-from matplotlib.projections.polar import PolarAxes
-from matplotlib.projections import register_projection
-from torchvision import transforms
 import torchvision.transforms.functional as F
-from PIL import Image
-
+import random
 
 def log_message(message, log_path):
     timestamp = datetime.now().strftime("%d/%m/%y, %H:%M:%S")
@@ -28,31 +23,6 @@ class VGG16FeatureExtractor(nn.Module):
         x = torch.flatten(x, 1)
         x = self.classifier(x)
         return x  # Feature vector
-
-
-def radar_factory(num_vars, frame='circle'):
-    """Créer un radar plot avec num_vars axes."""
-    theta = np.linspace(0, 2 * np.pi, num_vars, endpoint=False)
-
-    class RadarAxes(PolarAxes):
-        name = 'radar'
-        # Remplir le plot (zone fermée)
-        def fill(self, *args, **kwargs):
-            closed = kwargs.pop('closed', True)
-            return super().fill(closed=closed, *args, **kwargs)
-        # Tracer les lignes en radar
-        def plot(self, *args, **kwargs):
-            lines = super().plot(*args, **kwargs)
-            for line in lines:
-                line.set_clip_on(False)
-            return lines
-        # Fixer les labels des variables autour du radar
-        def set_varlabels(self, labels):
-            self.set_thetagrids(np.degrees(theta), labels)
-
-    register_projection(RadarAxes)
-    return theta
-
 
 class LetterboxPad:
     def __init__(self, size, fill_mode='reflect'):
@@ -79,3 +49,27 @@ class LetterboxPad:
         img = F.pad(img, padding=[pad_left, pad_top, pad_right, pad_bottom], padding_mode=self.fill_mode)
 
         return img
+
+
+class RandomFixedCrop:
+    def __init__(self, size):
+        self.size = size  # (height, width) or int
+    
+    def __call__(self, img):
+        w, h = img.size
+        th, tw = self.size if isinstance(self.size, tuple) else (self.size, self.size)
+
+        if w < tw or h < th:
+            raise ValueError("Crop size must be smaller than image size")
+
+        # 5 possible crop positions
+        options = [
+            (0, 0),                           # top-left
+            (w - tw, 0),                      # top-right
+            (0, h - th),                      # bottom-left
+            (w - tw, h - th),                 # bottom-right
+            ((w - tw) // 2, (h - th) // 2)    # center
+        ]
+
+        i, j = random.choice(options)
+        return F.crop(img, j, i, th, tw)  # F.crop(img, top, left, height, width)

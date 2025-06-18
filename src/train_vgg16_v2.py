@@ -37,7 +37,7 @@ best_model_path = os.path.join(log_dir, args.model_name)
 os.makedirs(model_dir, exist_ok=True)
 
 
-
+log_message(f"Run name: {run_name}", log_path)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 log_message(f"Using device: {device}", log_path)
 log_message("Starting training process...\n"
@@ -48,6 +48,8 @@ log_message("Starting training process...\n"
 # ----------------------
 train_transform = transforms.Compose([
     transforms.Resize((224, 224)),
+    # transforms.CenterCrop((224, 224)),  # Center crop to 224x224
+    RandomFixedCrop(224),
     # LetterboxPad(size=(224, 224), fill_mode='reflect'),  # Resize with letterbox padding
     transforms.RandomRotation(degrees=90),               # Rotate images randomly up to ±90°
     transforms.RandomHorizontalFlip(p=0.5),               # Flip horizontally with 50% chance
@@ -57,6 +59,7 @@ train_transform = transforms.Compose([
                          std=[0.229, 0.224, 0.225])
 ])
 
+log_message(f"Data transformations applied: {str(train_transform)}", log_path)
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
