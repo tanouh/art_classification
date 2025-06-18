@@ -1,0 +1,19 @@
+05/06/25, 23:59:18 : Using device: cuda 
+05/06/25, 23:59:18 : Starting training process...
+n_epoch : 10, batch size : 32, learning rate : 0.001 
+05/06/25, 23:59:18 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+05/06/25, 23:59:21 : Freezing convolutional layers for feature extraction 
+05/06/25, 23:59:21 : Optimizer: Adam 
+06/06/25, 00:08:32 : Epoch 1/10 - Train Loss: 0.2432 - Train accuracy: 0.9040 - Val loss: 0.18 - Val Accuracy: 92.28% 
+06/06/25, 00:08:34 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250605-235912/best_vgg16.pth 06/06/25, 00:18:33 : Epoch 2/10 - Train Loss: 0.1867 - Train accuracy: 0.9133 - Val loss: 0.17 - Val Accuracy: 93.06% 
+06/06/25, 00:18:34 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250605-235912/best_vgg16.pth 
+06/06/25, 00:29:03 : Epoch 3/10 - Train Loss: 0.1715 - Train accuracy: 0.9257 - Val loss: 0.17 - Val Accuracy: 92.54% 
+06/06/25, 00:38:44 : Epoch 4/10 - Train Loss: 0.1607 - Train accuracy: 0.9278 - Val loss: 0.16 - Val Accuracy: 93.32% 
+06/06/25, 00:38:46 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250605-235912/best_vgg16.pth 
+06/06/25, 00:48:52 : Epoch 5/10 - Train Loss: 0.1548 - Train accuracy: 0.9290 - Val loss: 0.17 - Val Accuracy: 92.28% 
+06/06/25, 00:58:19 : Epoch 6/10 - Train Loss: 0.1282 - Train accuracy: 0.9463 - Val loss: 0.16 - Val Accuracy: 92.54% 
+06/06/25, 01:08:33 : Epoch 7/10 - Train Loss: 0.1282 - Train accuracy: 0.9439 - Val loss: 0.16 - Val Accuracy: 92.54% 
+06/06/25, 01:18:07 : Epoch 8/10 - Train Loss: 0.1212 - Train accuracy: 0.9458 - Val loss: 0.16 - Val Accuracy: 92.67% 
+06/06/25, 01:28:39 : Epoch 9/10 - Train Loss: 0.1175 - Train accuracy: 0.9498 - Val loss: 0.16 - Val Accuracy: 92.54% 
+06/06/25, 01:38:37 : Epoch 10/10 - Train Loss: 0.1162 - Train accuracy: 0.9512 - Val loss: 0.16 - Val Accuracy: 92.67% 
+06/06/25, 01:38:37 : Training complete. Best validation accuracy: 93.32% 

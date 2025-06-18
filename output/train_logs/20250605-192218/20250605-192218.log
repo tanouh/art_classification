@@ -1,0 +1,11 @@
+05/06/25, 19:22:18 : Using device: cuda 
+05/06/25, 19:22:18 : Starting training process...
+n_epoch : 10, batch size : 32, learning rate : 0.0005 
+05/06/25, 19:22:18 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+05/06/25, 19:22:21 : Optimizer: SGD 
+05/06/25, 19:31:34 : Epoch 1/10 - Train Loss: 0.3128 - Val Accuracy: 91.10% 
+05/06/25, 19:31:35 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 
+05/06/25, 19:40:44 : Epoch 2/10 - Train Loss: 0.2083 - Val Accuracy: 91.62% 
+05/06/25, 19:40:46 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 
+05/06/25, 19:49:43 : Epoch 3/10 - Train Loss: 0.1822 - Val Accuracy: 92.67% 
+05/06/25, 19:49:45 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 

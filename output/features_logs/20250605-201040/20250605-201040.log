@@ -1,0 +1,5 @@
+05/06/25, 23:41:36 : Using device: cuda 
+05/06/25, 23:41:36 : Dataset loaded. Found 1241 abstract images. 
+05/06/25, 23:43:47 : Features saved to /home/ids/tmahandry-23/projet/art_classification/output/features_logs/20250605-201040/abstract_features.pt 
+05/06/25, 23:43:47 : Labels saved to /home/ids/tmahandry-23/projet/art_classification/output/features_logs/20250605-201040/abstract_labels.pt 
+05/06/25, 23:43:47 : Feature extraction completed successfully! 

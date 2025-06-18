@@ -1,0 +1,9 @@
+05/06/25, 19:57:18 : Using device: cuda 
+05/06/25, 19:57:18 : Starting training process...
+n_epoch : 1, batch size : 32, learning rate : 0.001 
+05/06/25, 19:57:18 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+05/06/25, 19:57:19 : Freezing convolutional layers for feature extraction 
+05/06/25, 19:57:20 : Optimizer: SGD 
+05/06/25, 20:06:24 : Epoch 1/1 - Train Loss: 0.2609 - Train accuracy: 0.8815 - Val loss: 0.19 - Val Accuracy: 92.02% 
+05/06/25, 20:06:26 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250605-195711/best_vgg16.pth 
+05/06/25, 20:06:26 : Training complete. Best validation accuracy: 92.02% 

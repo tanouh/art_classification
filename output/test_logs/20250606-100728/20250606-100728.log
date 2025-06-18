@@ -1,0 +1,14 @@
+06/06/25, 18:06:53 : Using device: cuda 
+06/06/25, 18:06:53 : Test dataset loaded. Total samples: 765 
+11/06/25, 18:53:38 : Using device: cuda 
+11/06/25, 18:53:38 : Test dataset loaded. Total samples: 765 
+11/06/25, 19:04:58 : Using device: cuda 
+11/06/25, 19:04:58 : Test dataset loaded. Total samples: 765 
+11/06/25, 19:05:07 : Evaluating model on test set... 
+11/06/25, 19:07:52 : Using device: cuda 
+11/06/25, 19:07:57 : Test dataset loaded. Total samples: 765 
+11/06/25, 19:08:08 : Evaluating model on test set... 
+11/06/25, 19:09:30 : Test Accuracy: 94.25% 
+11/06/25, 19:09:35 : Test Loss: 0.1463 
+11/06/25, 19:11:09 : Test Accuracy: 94.25% 
+11/06/25, 19:11:09 : Test Loss: 0.1463 

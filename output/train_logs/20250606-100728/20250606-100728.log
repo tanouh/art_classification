@@ -1,0 +1,91 @@
+06/06/25, 10:07:51 : Using device: cuda 
+06/06/25, 10:07:51 : Starting training process...
+n_epoch : 20, batch size : 32, learning rate : 0.001 
+06/06/25, 10:07:52 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+06/06/25, 10:07:56 : Freezing convolutional layers for feature extraction (N 29 and beyond) 
+06/06/25, 10:07:58 : Model Summary:
+===================================================================================================================
+Layer (type:depth-idx)                   Input Shape               Output Shape              Param #
+===================================================================================================================
+VGG                                      [32, 3, 224, 224]         [32, 2]                   --
+├─Sequential: 1-1                        [32, 3, 224, 224]         [32, 512, 7, 7]           --
+│    └─Conv2d: 2-1                       [32, 3, 224, 224]         [32, 64, 224, 224]        (1,792)
+│    └─ReLU: 2-2                         [32, 64, 224, 224]        [32, 64, 224, 224]        --
+│    └─Conv2d: 2-3                       [32, 64, 224, 224]        [32, 64, 224, 224]        (36,928)
+│    └─ReLU: 2-4                         [32, 64, 224, 224]        [32, 64, 224, 224]        --
+│    └─MaxPool2d: 2-5                    [32, 64, 224, 224]        [32, 64, 112, 112]        --
+│    └─Conv2d: 2-6                       [32, 64, 112, 112]        [32, 128, 112, 112]       (73,856)
+│    └─ReLU: 2-7                         [32, 128, 112, 112]       [32, 128, 112, 112]       --
+│    └─Conv2d: 2-8                       [32, 128, 112, 112]       [32, 128, 112, 112]       (147,584)
+│    └─ReLU: 2-9                         [32, 128, 112, 112]       [32, 128, 112, 112]       --
+│    └─MaxPool2d: 2-10                   [32, 128, 112, 112]       [32, 128, 56, 56]         --
+│    └─Conv2d: 2-11                      [32, 128, 56, 56]         [32, 256, 56, 56]         (295,168)
+│    └─ReLU: 2-12                        [32, 256, 56, 56]         [32, 256, 56, 56]         --
+│    └─Conv2d: 2-13                      [32, 256, 56, 56]         [32, 256, 56, 56]         (590,080)
+│    └─ReLU: 2-14                        [32, 256, 56, 56]         [32, 256, 56, 56]         --
+│    └─Conv2d: 2-15                      [32, 256, 56, 56]         [32, 256, 56, 56]         (590,080)
+│    └─ReLU: 2-16                        [32, 256, 56, 56]         [32, 256, 56, 56]         --
+│    └─MaxPool2d: 2-17                   [32, 256, 56, 56]         [32, 256, 28, 28]         --
+│    └─Conv2d: 2-18                      [32, 256, 28, 28]         [32, 512, 28, 28]         (1,180,160)
+│    └─ReLU: 2-19                        [32, 512, 28, 28]         [32, 512, 28, 28]         --
+│    └─Conv2d: 2-20                      [32, 512, 28, 28]         [32, 512, 28, 28]         (2,359,808)
+│    └─ReLU: 2-21                        [32, 512, 28, 28]         [32, 512, 28, 28]         --
+│    └─Conv2d: 2-22                      [32, 512, 28, 28]         [32, 512, 28, 28]         (2,359,808)
+│    └─ReLU: 2-23                        [32, 512, 28, 28]         [32, 512, 28, 28]         --
+│    └─MaxPool2d: 2-24                   [32, 512, 28, 28]         [32, 512, 14, 14]         --
+│    └─Conv2d: 2-25                      [32, 512, 14, 14]         [32, 512, 14, 14]         (2,359,808)
+│    └─ReLU: 2-26                        [32, 512, 14, 14]         [32, 512, 14, 14]         --
+│    └─Conv2d: 2-27                      [32, 512, 14, 14]         [32, 512, 14, 14]         (2,359,808)
+│    └─ReLU: 2-28                        [32, 512, 14, 14]         [32, 512, 14, 14]         --
+│    └─Conv2d: 2-29                      [32, 512, 14, 14]         [32, 512, 14, 14]         (2,359,808)
+│    └─ReLU: 2-30                        [32, 512, 14, 14]         [32, 512, 14, 14]         --
+│    └─MaxPool2d: 2-31                   [32, 512, 14, 14]         [32, 512, 7, 7]           --
+├─AdaptiveAvgPool2d: 1-2                 [32, 512, 7, 7]           [32, 512, 7, 7]           --
+├─Sequential: 1-3                        [32, 25088]               [32, 2]                   --
+│    └─Linear: 2-32                      [32, 25088]               [32, 4096]                102,764,544
+│    └─ReLU: 2-33                        [32, 4096]                [32, 4096]                --
+│    └─Dropout: 2-34                     [32, 4096]                [32, 4096]                --
+│    └─Linear: 2-35                      [32, 4096]                [32, 4096]                16,781,312
+│    └─ReLU: 2-36                        [32, 4096]                [32, 4096]                --
+│    └─Dropout: 2-37                     [32, 4096]                [32, 4096]                --
+│    └─Sequential: 2-38                  [32, 4096]                [32, 2]                   --
+│    │    └─Linear: 3-1                  [32, 4096]                [32, 512]                 2,097,664
+│    │    └─ReLU: 3-2                    [32, 512]                 [32, 512]                 --
+│    │    └─Dropout: 3-3                 [32, 512]                 [32, 512]                 --
+│    │    └─Linear: 3-4                  [32, 512]                 [32, 2]                   1,026
+===================================================================================================================
+Total params: 136,359,234
+Trainable params: 121,644,546
+Non-trainable params: 14,714,688
+Total mult-adds (G): 495.42
+===================================================================================================================
+Input size (MB): 19.27
+Forward/backward pass size (MB): 3470.39
+Params size (MB): 545.44
+Estimated Total Size (MB): 4035.10
+=================================================================================================================== 
+06/06/25, 10:07:58 : Optimizer: Adam 
+06/06/25, 10:38:49 : Epoch 1/20 - Train Loss: 0.2296 - Train accuracy: 0.9035 - Val loss: 0.19 - Val Accuracy: 91.36% 
+06/06/25, 10:38:55 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250606-100728/best_vgg16.pth 
+06/06/25, 10:58:51 : Epoch 2/20 - Train Loss: 0.1840 - Train accuracy: 0.9184 - Val loss: 0.18 - Val Accuracy: 93.19% 
+06/06/25, 10:58:53 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250606-100728/best_vgg16.pth 
+06/06/25, 11:21:37 : Epoch 3/20 - Train Loss: 0.1729 - Train accuracy: 0.9239 - Val loss: 0.17 - Val Accuracy: 92.02% 
+06/06/25, 11:40:01 : Epoch 4/20 - Train Loss: 0.1580 - Train accuracy: 0.9300 - Val loss: 0.16 - Val Accuracy: 92.93% 
+06/06/25, 12:01:59 : Epoch 5/20 - Train Loss: 0.1507 - Train accuracy: 0.9310 - Val loss: 0.17 - Val Accuracy: 93.19% 
+06/06/25, 12:21:39 : Epoch 6/20 - Train Loss: 0.1287 - Train accuracy: 0.9413 - Val loss: 0.16 - Val Accuracy: 93.19% 
+06/06/25, 12:32:21 : Epoch 7/20 - Train Loss: 0.1221 - Train accuracy: 0.9467 - Val loss: 0.16 - Val Accuracy: 93.32% 
+06/06/25, 12:32:23 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250606-100728/best_vgg16.pth 
+06/06/25, 12:55:35 : Epoch 8/20 - Train Loss: 0.1202 - Train accuracy: 0.9473 - Val loss: 0.16 - Val Accuracy: 93.19% 
+06/06/25, 13:18:53 : Epoch 9/20 - Train Loss: 0.1155 - Train accuracy: 0.9511 - Val loss: 0.16 - Val Accuracy: 93.32% 
+06/06/25, 13:49:00 : Epoch 10/20 - Train Loss: 0.1165 - Train accuracy: 0.9481 - Val loss: 0.16 - Val Accuracy: 93.32% 
+06/06/25, 14:08:38 : Epoch 11/20 - Train Loss: 0.1139 - Train accuracy: 0.9521 - Val loss: 0.16 - Val Accuracy: 93.19% 
+06/06/25, 14:35:27 : Epoch 12/20 - Train Loss: 0.1118 - Train accuracy: 0.9557 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 15:02:12 : Epoch 13/20 - Train Loss: 0.1058 - Train accuracy: 0.9542 - Val loss: 0.16 - Val Accuracy: 92.93% 
+06/06/25, 15:17:55 : Epoch 14/20 - Train Loss: 0.1085 - Train accuracy: 0.9535 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 15:38:46 : Epoch 15/20 - Train Loss: 0.1112 - Train accuracy: 0.9501 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 16:09:33 : Epoch 16/20 - Train Loss: 0.1089 - Train accuracy: 0.9550 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 16:43:53 : Epoch 17/20 - Train Loss: 0.1091 - Train accuracy: 0.9535 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 17:15:26 : Epoch 18/20 - Train Loss: 0.1095 - Train accuracy: 0.9583 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 17:40:42 : Epoch 19/20 - Train Loss: 0.1140 - Train accuracy: 0.9530 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 17:59:28 : Epoch 20/20 - Train Loss: 0.1089 - Train accuracy: 0.9535 - Val loss: 0.16 - Val Accuracy: 93.06% 
+06/06/25, 17:59:28 : Training complete. Best validation accuracy: 93.32% 

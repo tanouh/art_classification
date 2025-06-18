@@ -1,0 +1,4 @@
+23/05/25, 16:38:06 : Using device: cuda 
+23/05/25, 16:38:06 : Starting training process...
+n_epoch : 10, batch size : 32, learning rate : 0.0005 
+23/05/25, 16:38:06 : Dataset loaded. Training samples: 6112, Validation samples: 764 

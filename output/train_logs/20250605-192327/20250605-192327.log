@@ -1,0 +1,19 @@
+05/06/25, 19:23:27 : Using device: cuda 
+05/06/25, 19:23:27 : Starting training process...
+n_epoch : 10, batch size : 32, learning rate : 0.0005 
+05/06/25, 19:23:27 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+05/06/25, 19:23:29 : Optimizer: Adam 
+05/06/25, 19:32:45 : Epoch 1/10 - Train Loss: 0.2329 - Val Accuracy: 91.75% 
+05/06/25, 19:32:46 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 
+05/06/25, 19:41:40 : Epoch 2/10 - Train Loss: 0.1755 - Val Accuracy: 93.46% 
+05/06/25, 19:41:42 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 
+05/06/25, 19:50:53 : Epoch 3/10 - Train Loss: 0.1674 - Val Accuracy: 93.59% 
+05/06/25, 19:50:55 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/model/best_vgg16.pth 
+05/06/25, 19:59:58 : Epoch 4/10 - Train Loss: 0.1564 - Val Accuracy: 92.80% 
+05/06/25, 20:09:09 : Epoch 5/10 - Train Loss: 0.1467 - Val Accuracy: 93.19% 
+05/06/25, 20:18:01 : Epoch 6/10 - Train Loss: 0.1330 - Val Accuracy: 92.67% 
+05/06/25, 20:27:03 : Epoch 7/10 - Train Loss: 0.1303 - Val Accuracy: 92.67% 
+05/06/25, 20:36:04 : Epoch 8/10 - Train Loss: 0.1203 - Val Accuracy: 92.54% 
+05/06/25, 20:45:13 : Epoch 9/10 - Train Loss: 0.1174 - Val Accuracy: 92.54% 
+05/06/25, 20:54:22 : Epoch 10/10 - Train Loss: 0.1148 - Val Accuracy: 92.67% 
+05/06/25, 20:54:22 : Training complete. Best validation accuracy: 93.59% 

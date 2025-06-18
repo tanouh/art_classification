@@ -23,3 +23,5 @@ Etapes :
 1. Classification abstrait/figuratif
 2. Extraction des principales caractéristiques des images abstraites
 3. Clustering non supervisé des images abs pour faire apparaître les groupes naturels
+
+

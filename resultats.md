@@ -21,4 +21,19 @@ On a plutôt intérêt à choisir le modèle fine-tuner avec SGD, epoch=10, lr=0
 
 
 
+- faire la matrice de confusion -- pour voir si on ne fait des erreurs que sur les abstraits : répartition équitable des erreurs 
+- data augmentation : / pondérer les données lors de l'apprentissage par les abstraits
+
+
+1er cas : réquilibrer avec data augmentation 
+- Chercher les attributs 
+- nuage des points : voir les premières valeurs : 30% 20% pour les 
+
+data augmentation : 
+mettre dans une plus grande dimension - 
+
+montrer qu'on sait analyser convenablement les résultats : nombre de classe - surapprentissage 
+- augmentation --> qu'est ce que ça fait 
+
+rendu analytique --> surapprentissage 
 
