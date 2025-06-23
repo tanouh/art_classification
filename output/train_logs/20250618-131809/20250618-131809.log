@@ -74,3 +74,18 @@ Params size (MB): 545.44
 Estimated Total Size (MB): 4035.10
 =================================================================================================================== 
 18/06/25, 13:18:18 : Optimizer: Adam 
+18/06/25, 13:28:45 : Epoch 1/10 - Train Loss: 0.31 - Train accuracy: 87.09% - Val loss: 0.24 - Val Accuracy: 89.40% 
+18/06/25, 13:28:46 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131809/best_vgg16.pth 
+18/06/25, 13:38:15 : Epoch 2/10 - Train Loss: 0.27 - Train accuracy: 88.53% - Val loss: 0.23 - Val Accuracy: 90.18% 
+18/06/25, 13:38:16 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131809/best_vgg16.pth 
+18/06/25, 13:47:46 : Epoch 3/10 - Train Loss: 0.26 - Train accuracy: 89.19% - Val loss: 0.23 - Val Accuracy: 89.92% 
+18/06/25, 13:57:10 : Epoch 4/10 - Train Loss: 0.25 - Train accuracy: 89.59% - Val loss: 0.21 - Val Accuracy: 90.18% 
+18/06/25, 14:06:34 : Epoch 5/10 - Train Loss: 0.25 - Train accuracy: 89.19% - Val loss: 0.23 - Val Accuracy: 90.31% 
+18/06/25, 14:06:35 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131809/best_vgg16.pth 
+18/06/25, 14:15:54 : Epoch 6/10 - Train Loss: 0.24 - Train accuracy: 89.66% - Val loss: 0.20 - Val Accuracy: 91.23% 
+18/06/25, 14:15:56 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131809/best_vgg16.pth 
+18/06/25, 14:25:25 : Epoch 7/10 - Train Loss: 0.23 - Train accuracy: 90.17% - Val loss: 0.20 - Val Accuracy: 90.58% 
+18/06/25, 14:34:57 : Epoch 8/10 - Train Loss: 0.23 - Train accuracy: 90.17% - Val loss: 0.20 - Val Accuracy: 90.71% 
+18/06/25, 14:44:34 : Epoch 9/10 - Train Loss: 0.24 - Train accuracy: 90.20% - Val loss: 0.19 - Val Accuracy: 90.97% 
+18/06/25, 14:53:52 : Epoch 10/10 - Train Loss: 0.22 - Train accuracy: 90.79% - Val loss: 0.19 - Val Accuracy: 90.58% 
+18/06/25, 14:53:52 : Training complete. Best validation accuracy: 91.23% 

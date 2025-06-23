@@ -1,19 +1,19 @@
-18/06/25, 13:18:59 : Run name: 20250618-131848 
-18/06/25, 13:18:59 : Using device: cuda 
-18/06/25, 13:18:59 : Starting training process...
+18/06/25, 14:51:48 : Run name: 20250618-145138 
+18/06/25, 14:51:48 : Using device: cuda 
+18/06/25, 14:51:48 : Starting training process...
 n_epoch : 10, batch size : 32, learning rate : 0.001 
-18/06/25, 13:18:59 : Data transformations applied: Compose(
+18/06/25, 14:51:48 : Data transformations applied: Compose(
     Resize(size=(224, 224), interpolation=bilinear, max_size=None, antialias=True)
-    CenterCrop(size=(224, 224))
+    <functions.RandomFixedCrop object at 0x7f1fffdaab90>
     RandomRotation(degrees=[-90.0, 90.0], interpolation=nearest, expand=False, fill=0)
     RandomHorizontalFlip(p=0.5)
     RandomVerticalFlip(p=0.5)
     ToTensor()
     Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ) 
-18/06/25, 13:18:59 : Dataset loaded. Training samples: 6112, Validation samples: 764 
-18/06/25, 13:19:03 : Freezing convolutional layers for feature extraction (N 32 and beyond) 
-18/06/25, 13:19:04 : Model Summary:
+18/06/25, 14:51:48 : Dataset loaded. Training samples: 6112, Validation samples: 764 
+18/06/25, 14:51:51 : Freezing convolutional layers for feature extraction (N 32 and beyond) 
+18/06/25, 14:51:52 : Model Summary:
 ===================================================================================================================
 Layer (type:depth-idx)                   Input Shape               Output Shape              Param #
 ===================================================================================================================
@@ -74,22 +74,19 @@ Forward/backward pass size (MB): 3470.39
 Params size (MB): 545.44
 Estimated Total Size (MB): 4035.10
 =================================================================================================================== 
-18/06/25, 13:19:04 : Optimizer: Adam 
-18/06/25, 13:29:37 : Epoch 1/10 - Train Loss: 0.31 - Train accuracy: 87.16% - Val loss: 0.25 - Val Accuracy: 88.74% 
-18/06/25, 13:29:39 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 13:39:53 : Epoch 2/10 - Train Loss: 0.27 - Train accuracy: 88.96% - Val loss: 0.21 - Val Accuracy: 90.05% 
-18/06/25, 13:39:55 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 13:50:10 : Epoch 3/10 - Train Loss: 0.26 - Train accuracy: 88.91% - Val loss: 0.25 - Val Accuracy: 89.40% 
-18/06/25, 14:00:19 : Epoch 4/10 - Train Loss: 0.25 - Train accuracy: 89.22% - Val loss: 0.20 - Val Accuracy: 90.31% 
-18/06/25, 14:00:21 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 14:10:32 : Epoch 5/10 - Train Loss: 0.25 - Train accuracy: 89.37% - Val loss: 0.20 - Val Accuracy: 91.49% 
-18/06/25, 14:10:33 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 14:20:43 : Epoch 6/10 - Train Loss: 0.23 - Train accuracy: 90.54% - Val loss: 0.20 - Val Accuracy: 91.75% 
-18/06/25, 14:20:45 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 14:30:51 : Epoch 7/10 - Train Loss: 0.24 - Train accuracy: 90.02% - Val loss: 0.20 - Val Accuracy: 91.49% 
-18/06/25, 14:40:56 : Epoch 8/10 - Train Loss: 0.23 - Train accuracy: 90.67% - Val loss: 0.20 - Val Accuracy: 92.02% 
-18/06/25, 14:40:58 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 14:51:03 : Epoch 9/10 - Train Loss: 0.22 - Train accuracy: 90.58% - Val loss: 0.20 - Val Accuracy: 91.88% 
-18/06/25, 15:01:08 : Epoch 10/10 - Train Loss: 0.23 - Train accuracy: 90.41% - Val loss: 0.20 - Val Accuracy: 92.15% 
-18/06/25, 15:01:15 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-131848/best_vgg16.pth 
-18/06/25, 15:01:15 : Training complete. Best validation accuracy: 92.15% 
+18/06/25, 14:51:52 : Optimizer: Adam 
+18/06/25, 15:01:20 : Epoch 1/10 - Train Loss: 0.31 - Train accuracy: 87.37% - Val loss: 0.24 - Val Accuracy: 89.14% 
+18/06/25, 15:01:22 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-145138/best_vgg16.pth 
+18/06/25, 15:10:23 : Epoch 2/10 - Train Loss: 0.27 - Train accuracy: 88.53% - Val loss: 0.21 - Val Accuracy: 89.27% 
+18/06/25, 15:10:24 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-145138/best_vgg16.pth 
+18/06/25, 15:19:24 : Epoch 3/10 - Train Loss: 0.26 - Train accuracy: 88.78% - Val loss: 0.21 - Val Accuracy: 90.18% 
+18/06/25, 15:19:26 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-145138/best_vgg16.pth 
+18/06/25, 15:28:26 : Epoch 4/10 - Train Loss: 0.25 - Train accuracy: 89.45% - Val loss: 0.21 - Val Accuracy: 90.18% 
+18/06/25, 15:37:29 : Epoch 5/10 - Train Loss: 0.25 - Train accuracy: 89.04% - Val loss: 0.21 - Val Accuracy: 88.87% 
+18/06/25, 15:46:28 : Epoch 6/10 - Train Loss: 0.24 - Train accuracy: 89.95% - Val loss: 0.21 - Val Accuracy: 89.14% 
+18/06/25, 15:55:29 : Epoch 7/10 - Train Loss: 0.23 - Train accuracy: 90.18% - Val loss: 0.21 - Val Accuracy: 89.53% 
+18/06/25, 16:04:29 : Epoch 8/10 - Train Loss: 0.23 - Train accuracy: 90.25% - Val loss: 0.21 - Val Accuracy: 89.92% 
+18/06/25, 16:13:26 : Epoch 9/10 - Train Loss: 0.23 - Train accuracy: 90.23% - Val loss: 0.21 - Val Accuracy: 89.79% 
+18/06/25, 16:22:26 : Epoch 10/10 - Train Loss: 0.23 - Train accuracy: 90.30% - Val loss: 0.20 - Val Accuracy: 90.31% 
+18/06/25, 16:22:27 : New best model saved at /home/ids/tmahandry-23/projet/art_classification/output/train_logs/20250618-145138/best_vgg16.pth 
+18/06/25, 16:22:27 : Training complete. Best validation accuracy: 90.31% 

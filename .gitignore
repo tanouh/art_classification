@@ -3,3 +3,4 @@ __pycache*
 *abstract_features.pt
 *abstract_labels.pt
 output/model/
+*.pth
